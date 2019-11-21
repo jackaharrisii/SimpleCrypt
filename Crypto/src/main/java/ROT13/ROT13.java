@@ -12,7 +12,7 @@ public class ROT13  {
 
 
     ROT13(Character cs, Character cf) {
-        shift = cf-cs;
+        shift = cf.compareTo(cs);
     }
 
     ROT13() {
@@ -28,17 +28,18 @@ public class ROT13  {
         StringBuilder encrypted = new StringBuilder();
         for (int i = 0; i < text.length(); i++){
             char c = text.charAt(i);
-            if      (c >= 'a' && c <= 'm') c += 13;
-            else if (c >= 'A' && c <= 'M') c += 13;
-            else if (c >= 'n' && c <= 'z') c -= 13;
-            else if (c >= 'N' && c <= 'Z') c -= 13;
+            if      (c >= 'a' && c <= 'z' - shift) c += shift;
+            else if (c >= 'A' && c <= 'Z' - shift) c += shift;
+            else if (c >= 'a' + shift && c <= 'z') c += shift - 26;
+            else if (c >= 'A' + shift && c <= 'Z') c += shift - 26;
             encrypted.append(c);
         }
         return encrypted.toString();
     }
 
     public String decrypt(String text) {
-        return crypt(text);
+        shift = 26-shift;
+        return encrypt(text);
     }
 
     public static String rotate(String s, Character c) {
@@ -48,5 +49,7 @@ public class ROT13  {
         }
         return s.substring(i, s.length()) + s.substring(0, i);
     }
+
+
 
 }

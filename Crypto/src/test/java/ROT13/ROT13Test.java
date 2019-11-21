@@ -76,6 +76,7 @@ public class ROT13Test {
         // Then
         assertTrue(actual2.equals(A2));
     }
+
     @Test
     public void cryptTest2() {
         // Given
@@ -89,6 +90,35 @@ public class ROT13Test {
         System.out.println(actual);
         // Then
         assertTrue(actual.equals(Q1));
+    }
+
+    @Test
+    public void caesarCryptTest() {
+        // Given
+        ROT13 cipher = new ROT13('a', 'o');
+
+        String Q1 = "Why did the chicken cross the road?";
+        String A1 = "Kvm rwr hvs qvwqysb qfcgg hvs fcor?";
+
+        String Q2 = "Hc ush hc hvs chvsf gwrs!";
+        String A2 = "To get to the other side!";
+
+        // When
+        String actual = cipher.encrypt(Q1);
+        System.out.println(Q1);
+        System.out.println(A1);
+        System.out.println("\n" + actual + "\n");
+        // Then
+//        assertTrue(actual.equals(A1));
+
+        // When
+        String actual2 = cipher.decrypt(Q2);
+        System.out.println(Q2);
+        System.out.println(A2);
+        System.out.println("\n" + actual2);
+
+        // Then
+        assertTrue(actual2.equals(A2));
     }
 
 }
