@@ -1,3 +1,5 @@
+package ROT13;
+
 import org.junit.Test;
 
 import static org.junit.Assert.*;
@@ -63,6 +65,7 @@ public class ROT13Test {
         String actual = cipher.encrypt(Q1);
         System.out.println(Q1);
         System.out.println(A1);
+        System.out.println("\n" + actual);
         // Then
         assertTrue(actual.equals(A1));
 
